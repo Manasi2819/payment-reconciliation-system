@@ -1,0 +1,156 @@
+﻿
+========================================================================
+  STEP 1: DATA GENERATION
+========================================================================
+  Transactions generated : 2,520
+  Settlements generated  : 2,440
+
+  Injected issues:
+    settlement_delay               : 80 occurrences
+    rounding_error                 : 60 occurrences
+    duplicate_settlement           : 30 occurrences
+    duplicate_transaction          : 20 occurrences
+    refund_without_original        : 15 occurrences
+    missing_settlement             : 100 occurrences
+    extra_settlement               : 25 occurrences
+    random_noise                   : 10 occurrences
+
+--- Transactions (first 10 rows) ---
+transaction_id   user_id           timestamp  amount currency  status
+  TXN-XAJI0Y6D USR-00109 2025-10-04 02:03:32   99.09      USD success
+  TXN-SAHXTHV3 USR-00002 2025-12-13 16:08:57   46.25      GBP success
+  TXN-MF8MDD4V USR-00012 2025-12-10 20:23:53  118.77      USD success
+  TXN-7CKW5NGC USR-00170 2025-10-23 03:02:29  339.55      EUR success
+  TXN-45NQ4FMY USR-00180 2025-12-30 22:33:48   41.22      EUR success
+  TXN-WTIQJ7YH USR-00084 2025-12-21 19:59:14   41.22      EUR success
+  TXN-32OC6UZH USR-00128 2025-11-08 09:53:20  363.24      GBP success
+  TXN-FF0T0PVN USR-00036 2025-11-19 11:16:56  137.13      USD success
+  TXN-4FFYVNVQ USR-00065 2025-11-23 17:06:35   31.08      GBP  refund
+  TXN-ZYTJXEPQ USR-00185 2025-12-25 00:53:06  104.70      EUR success
+
+
+--- Settlements (first 10 rows) ---
+settlement_id transaction_id     settlement_date  settled_amount currency
+ STL-4LPO6GF9   TXN-XAJI0Y6D 2025-10-05 02:03:32           99.09      USD
+ STL-XWNKPZIA   TXN-SAHXTHV3 2025-12-15 16:08:57           46.25      GBP
+ STL-NL7UB8HL   TXN-MF8MDD4V 2025-12-13 20:23:53          118.77      USD
+ STL-RRT2L2IE   TXN-7CKW5NGC 2025-10-24 03:02:29          339.55      EUR
+ STL-4G0CYOBG   TXN-45NQ4FMY 2026-01-03 22:33:48           41.22      EUR
+ STL-ONX3F86U   TXN-WTIQJ7YH 2025-12-23 19:59:14           41.22      EUR
+ STL-8GCP8YOQ   TXN-32OC6UZH 2025-11-10 09:53:20          363.24      GBP
+ STL-BX6AZ8YG   TXN-FF0T0PVN 2025-11-24 11:16:56          137.13      USD
+ STL-H4JWQV66   TXN-4FFYVNVQ 2025-11-24 17:06:35           31.08      GBP
+ STL-GCXY13VW   TXN-ZYTJXEPQ 2025-12-29 00:53:06          104.70      EUR
+
+
+========================================================================
+  STEP 2: RECONCILIATION ENGINE
+========================================================================
+
+========================================================================
+  STEP 3: DETAILED MISMATCH REPORT
+========================================================================
+  Total issues found: 488
+
+--- Detailed Report (first 10 rows) ---
+transaction_id         issue_type                                                      description severity
+  TXN-XA3KX7EE missing_settlement Transaction TXN-XA3KX7EE has no corresponding settlement record.     high
+  TXN-BNTPBN78 missing_settlement Transaction TXN-BNTPBN78 has no corresponding settlement record.     high
+  TXN-CITFOYQB missing_settlement Transaction TXN-CITFOYQB has no corresponding settlement record.     high
+  TXN-CIJ2V2HE missing_settlement Transaction TXN-CIJ2V2HE has no corresponding settlement record.     high
+  TXN-BNE6LOH2 missing_settlement Transaction TXN-BNE6LOH2 has no corresponding settlement record.     high
+  TXN-A0GNZS43 missing_settlement Transaction TXN-A0GNZS43 has no corresponding settlement record.     high
+  TXN-9CSS9TOQ missing_settlement Transaction TXN-9CSS9TOQ has no corresponding settlement record.     high
+  TXN-5LEN606N missing_settlement Transaction TXN-5LEN606N has no corresponding settlement record.     high
+  TXN-5COZROOU missing_settlement Transaction TXN-5COZROOU has no corresponding settlement record.     high
+  TXN-2795E5IZ missing_settlement Transaction TXN-2795E5IZ has no corresponding settlement record.     high
+
+--- Sample issues by type ---
+
+  [MISSING_SETTLEMENT] (115 total)
+    TXN: TXN-XA3KX7EE  |  Severity: high  |  Transaction TXN-XA3KX7EE has no corresponding settlement record.
+    TXN: TXN-BNTPBN78  |  Severity: high  |  Transaction TXN-BNTPBN78 has no corresponding settlement record.
+
+  [UNMATCHED_SETTLEMENT] (25 total)
+    TXN: TXN-336WDERU  |  Severity: high  |  Settlement references TXN-336WDERU which has no matching transaction.
+    TXN: TXN-Q7EA3MFK  |  Severity: high  |  Settlement references TXN-Q7EA3MFK which has no matching transaction.
+
+  [ROUNDING_ERROR] (60 total)
+    TXN: TXN-74FRHOCN  |  Severity: low  |  Rounding discrepancy: transaction=18.36, settled=18.35, diff=-0.01
+    TXN: TXN-A5PISKFF  |  Severity: low  |  Rounding discrepancy: transaction=152.81, settled=152.83, diff=+0.02
+
+  [AMOUNT_MISMATCH] (7 total)
+    TXN: TXN-JLCQNT3B  |  Severity: medium  |  Amount mismatch: transaction=15.1, settled=42.37, diff=+27.27
+    TXN: TXN-EGI3QUPX  |  Severity: medium  |  Amount mismatch: transaction=16.29, settled=35.16, diff=+18.87
+
+  [SETTLEMENT_DELAY] (80 total)
+    TXN: TXN-KRM8J5EC  |  Severity: medium  |  Settlement delayed by 44 days (txn=2025-10-08, stl=2025-11-21).
+    TXN: TXN-A75UUZPE  |  Severity: medium  |  Settlement delayed by 36 days (txn=2025-11-01, stl=2025-12-07).
+
+  [DUPLICATE_TRANSACTION] (20 total)
+    TXN: TXN-UI1B0Z3N  |  Severity: medium  |  Transaction TXN-UI1B0Z3N appears 2 times in the transactions dataset.
+    TXN: TXN-CD81TWHW  |  Severity: medium  |  Transaction TXN-CD81TWHW appears 2 times in the transactions dataset.
+
+  [DUPLICATE_SETTLEMENT] (30 total)
+    TXN: TXN-YUBMXNSZ  |  Severity: medium  |  Transaction TXN-YUBMXNSZ has 2 settlement entries.
+    TXN: TXN-QRU54D8W  |  Severity: medium  |  Transaction TXN-QRU54D8W has 2 settlement entries.
+
+  [REFUND_WITHOUT_ORIGINAL] (151 total)
+    TXN: TXN-4FFYVNVQ  |  Severity: high  |  Refund TXN-4FFYVNVQ (user=USR-00065, amount=31.08) has no matching original transaction.
+    TXN: TXN-A0L7253J  |  Severity: high  |  Refund TXN-A0L7253J (user=USR-00180, amount=38.47) has no matching original transaction.
+
+========================================================================
+  STEP 4: SUMMARY REPORT
+========================================================================
+  Total transactions (rows)       : 2,520
+  Total unique transaction IDs     : 2,500
+  Total settlements (rows)         : 2,440
+  Total unique settlement txn IDs  : 2,410
+  Total matched                    : 2,385
+  Total mismatched (unique txn IDs): 446
+  Total issues                     : 488
+
+  Breakdown by issue type:
+    refund_without_original             : 151
+    missing_settlement                  : 115
+    settlement_delay                    : 80
+    rounding_error                      : 60
+    duplicate_settlement                : 30
+    unmatched_settlement                : 25
+    duplicate_transaction               : 20
+    amount_mismatch                     : 7
+
+  Breakdown by severity:
+    high       : 291
+    medium     : 137
+    low        : 60
+
+========================================================================
+  STEP 5: REPORTS EXPORTED
+========================================================================
+  Detailed report : C:\Users\HP\hp\DocumentsN\OneLab\reconciliation_system\output\detailed_report.csv
+  Summary report  : C:\Users\HP\hp\DocumentsN\OneLab\reconciliation_system\output\summary_report.csv
+  Transactions    : C:\Users\HP\hp\DocumentsN\OneLab\reconciliation_system\output\transactions.csv
+  Settlements     : C:\Users\HP\hp\DocumentsN\OneLab\reconciliation_system\output\settlements.csv
+
+========================================================================
+  EDGE CASES HANDLED
+========================================================================
+  ò 1. Refund transactions with no original success transaction (orphaned refunds) are detected even when user_id/amount combinations are ambiguous.
+  ò 2. Duplicate transaction_ids in both transactions and settlements are handled without causing merge explosions (dedup before join).
+  ò 3. Currency mismatches between transaction and settlement records are surfaced as random noise anomalies.
+  ò 4. Settlement dates that precede the transaction timestamp are flagged as settlement_before_transaction (negative delay).
+  ò 5. Rounding errors as small as ▒0.01 are detected and distinguished from more significant amount mismatches.
+  ò 6. Multiple issue types can be reported for the same transaction_id (e.g., a delayed settlement that also has a rounding error).
+
+========================================================================
+  PRODUCTION LIMITATIONS
+========================================================================
+  ò 1. SCALABILITY: The current in-memory pandas approach works for thousands of records but would need to be replaced with a database-backed or distributed (Spark/Dask) solution for millions of transactions per day.
+  ò 2. REAL-TIME PROCESSING: This is a batch reconciliation system. Production systems often need stream-based (Kafka + Flink) reconciliation for near-real-time settlement matching.
+  ò 3. MULTI-CURRENCY FX RATES: The system detects currency mismatches but does not apply exchange rate conversions. Production systems would need FX rate feeds and tolerance bands per currency pair.
+
+========================================================================
+  Reconciliation complete.
+========================================================================
+

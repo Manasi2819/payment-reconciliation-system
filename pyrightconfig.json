@@ -1,0 +1,13 @@
+{
+    "pythonVersion": "3.13",
+    "pythonPlatform": "Windows",
+    "executionEnvironments": [
+        {
+            "root": ".",
+            "pythonPath": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+        }
+    ],
+    "reportMissingImports": false,
+    "reportGeneralTypeIssues": "warning",
+    "reportOptionalMemberAccess": "warning"
+}

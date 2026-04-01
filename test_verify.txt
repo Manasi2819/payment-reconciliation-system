@@ -1,0 +1,144 @@
+﻿python : 
+test_exact_mismatch (tests
+.TestAmountMismatchAgent.t
+est_exact_mismatch) ... ok
+At line:1 char:1
++ python -m unittest 
+tests -v 2>&1 | Out-File 
+-Encoding utf8 test_verif 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: 
+(test_ex    
+act_mism...ismatch) ...   
+  ok:String) [], 
+RemoteExc    eption
+    + 
+FullyQualifiedErrorId     
+: NativeCommandError
+ 
+test_no_mismatch_on_exact_
+match (tests.TestAmountMis
+matchAgent.test_no_mismatc
+h_on_exact_match) ... ok
+test_rounding_difference (
+tests.TestAmountMismatchAg
+ent.test_rounding_differen
+ce) ... ok
+test_no_false_positives (t
+ests.TestCleanData.test_no
+_false_positives) ... ok
+test_dedup_removes_exact_d
+uplicates (tests.TestCoord
+inatorDeduplication.test_d
+edup_removes_exact_duplica
+tes) ... ok
+test_summary_has_required_
+keys (tests.TestCoordinato
+rSummary.test_summary_has_
+required_keys) ... ok
+test_abnormal_delay (tests
+.TestDateMismatchAgent.tes
+t_abnormal_delay) ... ok
+test_normal_delay_no_issue
+ (tests.TestDateMismatchAg
+ent.test_normal_delay_no_i
+ssue) ... ok
+test_settlement_delay (tes
+ts.TestDateMismatchAgent.t
+est_settlement_delay) ... 
+ok
+test_duplicate_settlement 
+(tests.TestDuplicateDetect
+ionAgent.test_duplicate_se
+ttlement) ... ok
+test_duplicate_transaction
+ (tests.TestDuplicateDetec
+tionAgent.test_duplicate_t
+ransaction) ... ok
+test_duplicate_settlements
+_detected (tests.TestGener
+atedData.test_duplicate_se
+ttlements_detected)
+Engine should detect 
+injected duplicate 
+settlements. ... ok
+test_duplicate_transaction
+s_detected (tests.TestGene
+ratedData.test_duplicate_t
+ransactions_detected)
+Engine should detect 
+injected duplicate 
+transactions. ... ok
+test_extra_settlements_det
+ected (tests.TestGenerated
+Data.test_extra_settlement
+s_detected)
+Engine should detect the 
+injected extra 
+settlements. ... ok
+test_missing_settlements_d
+etected (tests.TestGenerat
+edData.test_missing_settle
+ments_detected)
+Engine should detect at 
+least the injected 
+missing settlements. ... 
+ok
+test_refund_issues_detecte
+d (tests.TestGeneratedData
+.test_refund_issues_detect
+ed)
+Engine should detect some 
+refund-without-original 
+issues. ... ok
+test_rounding_errors_detec
+ted (tests.TestGeneratedDa
+ta.test_rounding_errors_de
+tected)
+Engine should detect some 
+rounding errors. ... ok
+test_settlement_delays_det
+ected (tests.TestGenerated
+Data.test_settlement_delay
+s_detected)
+Engine should detect 
+delayed settlements. ... 
+ok
+test_total_issues_nonzero 
+(tests.TestGeneratedData.t
+est_total_issues_nonzero)
+Total issues should be 
+substantially nonzero. 
+... ok
+test_matching_splits_corre
+ctly (tests.TestMatchingAg
+ent.test_matching_splits_c
+orrectly) ... ok
+test_detects_missing_settl
+ement (tests.TestMissingSe
+ttlementAgent.test_detects
+_missing_settlement) ... 
+ok
+test_refund_with_valid_ori
+ginal (tests.TestRefundCon
+sistencyAgent.test_refund_
+with_valid_original) ... 
+ok
+test_refund_without_origin
+al (tests.TestRefundConsis
+tencyAgent.test_refund_wit
+hout_original) ... ok
+test_detects_extra_settlem
+ent (tests.TestUnmatchedSe
+ttlementAgent.test_detects
+_extra_settlement) ... ok
+
+--------------------------
+--------------------------
+------------------
+Ran 24 tests in 0.937s
+
+OK
